@@ -100,4 +100,3 @@ while True:
     else:
         print("\nPilihan tidak valid.")
         input("Tekan ENTER untuk kembali...")
-    
