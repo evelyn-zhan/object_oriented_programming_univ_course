@@ -60,7 +60,6 @@ def tambah_mahasiswa():
     email = input(f"{"E-mail":<25}: ")
 
     mahasiswa = Mahasiswa(nim, nama, jenis_kelamin, jurusan, email)
-
     daftar_mahasiswa.append(mahasiswa)
 
 
@@ -85,7 +84,6 @@ def tambah_dosen():
     no_hp = input(f"{"No. HP":<25}: ")
 
     dosen = Dosen(nip, nama, jenis_kelamin, jabatan, no_hp)
-
     daftar_dosen.append(dosen)
 
 
