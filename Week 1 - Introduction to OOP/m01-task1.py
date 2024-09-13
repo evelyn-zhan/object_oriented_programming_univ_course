@@ -62,6 +62,10 @@ def tambah_mahasiswa():
     mahasiswa = Mahasiswa(nim, nama, jenis_kelamin, jurusan, email)
     daftar_mahasiswa.append(mahasiswa)
 
+    print("=" * 120)
+    print("Data mahasiswa berhasil ditambahkan.")
+    input("Tekan ENTER untuk kembali...")
+
 
 def tambah_dosen():
     print(f"{"TAMBAH DATA DOSEN":^120}")
@@ -85,6 +89,10 @@ def tambah_dosen():
 
     dosen = Dosen(nip, nama, jenis_kelamin, jabatan, no_hp)
     daftar_dosen.append(dosen)
+
+    print("=" * 120)
+    print("Data dosen berhasil ditambahkan.")
+    input("Tekan ENTER untuk kembali...")
 
 
 def cetak_absensi():
