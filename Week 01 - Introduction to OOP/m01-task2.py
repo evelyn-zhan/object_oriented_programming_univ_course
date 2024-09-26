@@ -8,7 +8,6 @@ class Produk:
         self.nama = nama
         self.stok = stok
 
-
 barang = ["Hand Sanitizer", "Ban Mobil", "Buah-Buahan", "Botol Minuman Bayi"]
 daftar_produk = []
 

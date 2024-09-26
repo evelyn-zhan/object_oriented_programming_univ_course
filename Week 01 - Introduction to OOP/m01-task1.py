@@ -19,10 +19,8 @@ class Dosen:
         self.jabatan = jabatan
         self.no_hp = no_hp
 
-
 daftar_mahasiswa = []
 daftar_dosen = []
-
 
 def tambah_mahasiswa():
     print(f"{"TAMBAH DATA MAHASISWA":^120}")
@@ -66,7 +64,6 @@ def tambah_mahasiswa():
     print("Data mahasiswa berhasil ditambahkan.")
     input("Tekan ENTER untuk kembali...")
 
-
 def tambah_dosen():
     print(f"{"TAMBAH DATA DOSEN":^120}")
     print("=" * 120)
@@ -93,7 +90,6 @@ def tambah_dosen():
     print("=" * 120)
     print("Data dosen berhasil ditambahkan.")
     input("Tekan ENTER untuk kembali...")
-
 
 def cetak_absensi():
     print(f"{"REKAP ABSENI":^120}")
@@ -128,7 +124,6 @@ def cetak_absensi():
     print(f"Total: {len(daftar_mahasiswa) + len(daftar_dosen)} orang")
 
     input("\nTekan ENTER untuk kembali...")
-
 
 while True:
     clear_screen()
