@@ -15,19 +15,17 @@ class Mahasiswa(Evelyn):
         super().__init__(nomor_induk, nama, jenis_kelamin, nomor_hp)
 
     def absensi(self):
-        print(f"{"NIM":<5}: {self.nomor_induk}")
-        print(f"{"Nama":<5}: {self.nama}\n")
+        print(f"{self.nomor_induk:<15}{self.nama}")
 
 class Dosen(Evelyn):
     def __init__(self, nomor_induk, nama, jenis_kelamin, nomor_hp):
         super().__init__(nomor_induk, nama, jenis_kelamin, nomor_hp)
     
     def perkenalan(self):
-        print(f"{"Nama":<10}: {self.nama}")
-        print(f"{"Nomor HP":<10}: {self.nomor_hp}\n")
+        print(f"{self.nama:<20}{self.nomor_hp}")
 
-daftar_mahasiswa = []
-daftar_dosen = []
+mahasiswa = []
+dosen = []
 
 def tambah_mahasiswa():
     print(f"{"TAMBAH DATA MAHASISWA":^100}")
@@ -47,8 +45,7 @@ def tambah_mahasiswa():
 
     nomor_hp = input(f"{"Nomor HP":<25}: ")
 
-    mahasiswa = Mahasiswa(nim, nama, jenis_kelamin, nomor_hp)
-    daftar_mahasiswa.append(mahasiswa)
+    mahasiswa.append(Mahasiswa(nim, nama, jenis_kelamin, nomor_hp))
 
     print("=" * 100)
     print("Data mahasiswa berhasil ditambahkan.")
@@ -71,8 +68,7 @@ def tambah_dosen():
 
     nomor_hp = input(f"{"Nomor HP":<25}: ")
 
-    dosen = Dosen(nip, nama, jenis_kelamin, nomor_hp)
-    daftar_dosen.append(dosen)
+    dosen.append(Dosen(nip, nama, jenis_kelamin, nomor_hp))
 
     print("=" * 100)
     print("Data dosen berhasil ditambahkan.")
@@ -82,14 +78,13 @@ def absensi_mahasiswa():
     print(f"{"ABSENSI MAHASISWA":^100}")
     print("=" * 100)
 
-    if len(daftar_mahasiswa) == 0:
+    if len(mahasiswa) == 0:
         print("Belum ada data mahasiswa.")
     else:
-        count = 1
-        for mahasiswa in daftar_mahasiswa:
-            print(f"Mahasiswa ke-{count}")
-            mahasiswa.absensi()
-            count += 1
+        print(f"{"No":<5}{"NIM":<15}{"Nama"}")
+        for i in range(len(mahasiswa)):
+            print(f"{i + 1:<5}", end = "")
+            mahasiswa[i].absensi()
 
     print("=" * 100)
     input("Tekan ENTER untuk kembali...")
@@ -98,14 +93,13 @@ def perkenalan_dosen():
     print(f"{"PERKENALAN DOSEN":^100}")
     print("=" * 100)
 
-    if len(daftar_dosen) == 0:
+    if len(dosen) == 0:
         print("Belum ada data dosen.")
     else:
-        count = 1
-        for dosen in daftar_dosen:
-            print(f"Dosen ke-{count}")
-            dosen.perkenalan()
-            count += 1
+        print(f"{"No":<5}{"Nama":<20}{"Nomor HP"}")
+        for i in range(len(dosen)):
+            print(f"{i + 1:<5}", end = "")
+            dosen[i].perkenalan()
 
     print("=" * 100)
     input("Tekan ENTER untuk kembali...")
