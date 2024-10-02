@@ -9,6 +9,7 @@ class Produk:
         self.stok = stok
         self.harga_beli = harga_beli
         self.harga_jual = harga_jual
+        self.pembelian = 0
 
 barang = ["Hand Sanitizer", "Ban Mobil", "Buah-Buahan", "Botol Minuman Bayi"]
 harga_beli = [25000, 100000, 70000, 30000]
@@ -20,27 +21,27 @@ for i in range(len(barang)):
     produk.append(Produk(barang[i], stok[i], harga_beli[i], harga_jual[i]))
 
 def cek_stok():
-    print(f"{"CEK STOK BARANG":^50}")
-    print("=" * 50)
+    print(f"{"CEK STOK BARANG":^70}")
+    print("=" * 70)
 
     print(f"{"No":<5}{"Nama Barang":<25}{"Stok"}")
 
     for i in range(len(produk)):
         print(f"{i + 1:<5}{produk[i].nama:<25}{produk[i].stok}")
     
-    print("=" * 50)
+    print("=" * 70)
     input("Tekan ENTER untuk kembali...")
 
 def jual_produk():
-    print(f"{"JUAL PRODUK":^50}")
-    print("=" * 50)
+    print(f"{"JUAL PRODUK":^70}")
+    print("=" * 70)
 
     print(f"{"No":<5}{"Produk":<25}{"Stok":<8}{"Harga Jual"}")
 
     for i in range(len(produk)):
         print(f"{i + 1:<5}{produk[i].nama:<25}{produk[i].stok:<8}{produk[i].harga_jual}")
     
-    print("=" * 50)
+    print("=" * 70)
 
     nomor = int(input("Masukkan nomor barang yang ingin dijual: "))
 
@@ -60,23 +61,73 @@ def jual_produk():
     
     produk[nomor].stok -= jumlah
 
-    print("=" * 50)
+    print("=" * 70)
     print(f"{produk[nomor].nama} telah dijual sebanyak {jumlah} buah.")
+    input("Tekan ENTER untuk kembali...")
+
+def beli_stok():
+    print(f"{"BELI STOK BARANG":^70}")
+    print("=" * 70)
+
+    print(f"{"No":<5}{"Produk":<25}{"Harga Beli"}")
+
+    for i in range(len(produk)):
+        print(f"{i + 1:<5}{produk[i].nama:<25}{produk[i].harga_beli}")
+    
+    print("=" * 70)
+
+    nomor = int(input("Masukkan nomor barang yang ingin dibeli: "))
+
+    while nomor < 1 or nomor > len(produk):
+        print("Tidak ada produk dengan nomor tersebut.\n")
+        nomor = int(input("Masukkan nomor barang yang ingin dibeli: "))
+    
+    nomor -= 1
+
+    print()
+
+    jumlah = int(input(f"Masukkan berapa buah {produk[nomor].nama} yang ingin dibeli: "))
+
+    while jumlah <= 0:
+        print("Jumlah barang yang dibeli minimal 1.\n")
+        jumlah = int(input(f"Masukkan berapa buah {produk[nomor].nama} yang ingin dijumlah: "))
+
+    produk[nomor].stok += jumlah
+    produk[nomor].pembelian += jumlah
+
+    print("=" * 70)
+    print(f"{produk[nomor].nama} telah dibeli sebanyak {jumlah} buah.")
+    input("Tekan ENTER untuk kembali...")
+
+def laporan_pengeluaran():
+    print(f"{"LAPORAN PENGELUARAN":^70}")
+    print("=" * 70)
+
+    total = 0
+
+    print(f"{"No":<5}{"Produk":<25}{"Harga Beli":<15}{"Jumlah Pembelian"}")
+
+    for i in range(len(produk)):
+        print(f"{i + 1:<5}{produk[i].nama:<25}{produk[i].harga_beli:<15}{produk[i].pembelian}")
+        total += produk[i].pembelian * produk[i].harga_beli
+    
+    print("=" * 70)
+    print(f"Total Pengeluaran: Rp {total}")
     input("Tekan ENTER untuk kembali...")
 
 while True:
     clear_screen()
 
-    print(f"{"MENU":^50}")
-    print("=" * 50)
+    print(f"{"MENU":^70}")
+    print("=" * 70)
     print("1. Cek Stok")
     print("2. Jual Produk")
     print("3. Beli Stok")
     print("4. Laporan Pengeluaran")
     print("5. Keluar")
-    print("=" * 50)
+    print("=" * 70)
 
-    pilihan = int(input("\nPilih menu [1/2/3/4]: "))
+    pilihan = int(input("\nPilih menu [1/2/3/4/5]: "))
 
     if 1 <= pilihan <= 4:
         clear_screen()
