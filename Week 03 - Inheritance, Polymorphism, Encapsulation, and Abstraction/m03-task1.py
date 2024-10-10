@@ -1,5 +1,5 @@
 import os
-from abc import ABC, abstractmethod
+from abc import ABC, abstractproperty, abstractmethod
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
