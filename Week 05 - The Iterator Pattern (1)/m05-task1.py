@@ -10,23 +10,27 @@ class DaftarMahasiswa:
     def tambah(self, mahasiswa):
         self.isi.append(mahasiswa)
     
-    def cari(self, nim):
+    def cari(self, cari):
+        daftar_cari = []
         for mahasiswa in self.isi:
-            if mahasiswa.nim == nim:
-                mahasiswa.absensi()
-                return
+            if mahasiswa.nim == cari or mahasiswa.nama == cari:
+                daftar_cari.append(mahasiswa.absensi())
+        if len(daftar_cari) > 0:
+            print('Mahasiswa ditemukan!')
+            return daftar_cari
         print('Mahasiswa tidak ditemukan.')
+        return []
 
 class Mahasiswa:
-    def __init__(self, nim, nama, jenis_kelamin, hp):
+    def __init__(self, nim, nama, jurusan, jenis_kelamin, hp):
         self.nim = nim
         self.nama = nama
+        self.jurusan = jurusan
         self.jenis_kelamin = jenis_kelamin
         self.hp = hp
     
     def absensi(self):
-        print('Mahasiswa ditemukan!')
-        print(self.__dict__)
+        return self.__dict__
 
 daftar_mahasiswa = DaftarMahasiswa()
 
@@ -53,7 +57,19 @@ def tambah_data():
             valid = True
 
         except ValueError as e:
-            print(str(e)) 
+            print(str(e))
+    
+    kode_jurusan = nim[2:5]
+    if kode_jurusan == '111':
+        jurusan = 'Teknik Informatika'
+    elif kode_jurusan == '112':
+        jurusan = 'Sistem Informasi'
+    elif kode_jurusan == '113':
+        jurusan = 'Teknologi Informasi'
+    elif kode_jurusan == '211':
+        jurusan = 'Akuntansi'
+    elif kode_jurusan == '212':
+        jurusan = 'Manajemen'
 
     valid = False
     
@@ -120,7 +136,7 @@ def tambah_data():
         except ValueError as e:
             print(str(e))
 
-    daftar_mahasiswa.tambah(Mahasiswa(nim, nama.title(), jenis_kelamin, hp))
+    daftar_mahasiswa.tambah(Mahasiswa(nim, nama.title(), jurusan, jenis_kelamin, hp))
 
     print('=' * 80)
     print('Data berhasil ditambahkan.')
@@ -128,31 +144,75 @@ def tambah_data():
 def absensi_mahasiswa():
     print(f'{"ABSENSI MAHASISWA":^80}')
     print('=' * 80)
-
-    valid = False
-
-    while valid == False:
-        nim = input('Masukkan NIM Mahasiswa yang ingin dicari: ')
-
-        try:
-            if nim == '':
-                raise ValueError('NIM yang ingin dicari tidak boleh kosong.')
-
-            for karakter in nim:
-                if karakter not in '0123456789':
-                    raise ValueError('NIM hanya boleh terdiri dari angka saja.')
-            
-            if len(nim) != 9:
-                raise ValueError('NIM hanya boleh terdiri 9 angka saja.')
-            
-            valid = True
-
-        except ValueError as e:
-            print(str(e))
-    
+    print('1. Cari berdasarkan NIM')
+    print('2. Cari berdasarkan Nama')
     print('=' * 80)
+    pilihan = int(input('Pilih menu (1/2): '))
 
-    daftar_mahasiswa.cari(nim)
+    print()
+
+    if pilihan == 1:
+
+        valid = False
+
+        while valid == False:
+            nim = input('Masukkan NIM Mahasiswa yang ingin dicari: ')
+
+            try:
+                if nim == '':
+                    raise ValueError('NIM yang ingin dicari tidak boleh kosong.')
+
+                for karakter in nim:
+                    if karakter not in '0123456789':
+                        raise ValueError('NIM hanya boleh terdiri dari angka saja.')
+                
+                if len(nim) != 9:
+                    raise ValueError('NIM hanya boleh terdiri 9 angka saja.')
+                
+                valid = True
+
+            except ValueError as e:
+                print(str(e))
+    
+        print('=' * 80)
+
+        for mahasiswa in daftar_mahasiswa.cari(nim):
+            print(mahasiswa)
+    
+    elif pilihan == 2:
+
+        valid = False
+
+        while valid == False:
+            nama = input('Masukkan Nama Mahasiswa yang ingin dicari: ').lower()
+
+            try:
+                if nama == '':
+                    raise ValueError('Nama yang ingin dicari tidak boleh kosong.')
+
+                count = 0
+
+                for karakter in nama:
+                    if karakter not in 'abcdefghijklmnopqrstuvwxyz ':
+                        raise ValueError('Nama hanya boleh terdiri dari huruf dan spasi saja.')
+                    if karakter != ' ':
+                        count += 1
+                
+                if count == 0:
+                    raise ValueError('Nama tidak boleh kosong.')
+
+                valid = True
+            
+            except ValueError as e:
+                print(str(e))
+    
+        print('=' * 80)
+
+        for mahasiswa in daftar_mahasiswa.cari(nama.title()):
+            print(mahasiswa)
+
+    else:
+        print('Pilihan tidak valid.')
 
 while True:
     clear_screen()

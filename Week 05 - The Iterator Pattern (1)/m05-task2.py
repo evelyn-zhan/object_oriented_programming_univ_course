@@ -16,7 +16,7 @@ class DaftarProduk:
         while True:
             try:
                 produk = next(iterator)
-                produk.cetak()
+                print(produk.cetak())
             except StopIteration:
                 break
     
@@ -56,13 +56,14 @@ class DaftarProduk:
                 break
 
 class Produk:
-    def __init__(self, kode, nama, jumlah):
+    def __init__(self, kode, nama, jumlah, jenis):
         self.kode = kode
         self.nama = nama
         self.jumlah = jumlah
+        self.jenis = jenis
     
     def cetak(self):
-        print(self.__dict__)
+        return self.__dict__
 
 daftar_produk = DaftarProduk()
 
@@ -164,14 +165,27 @@ def tambah_produk():
             except ValueError as e:
                 print(str(e))
         
-        daftar_produk.tambah(Produk(kode, nama, jumlah))
+        valid = False
+
+        while valid == False:
+            jenis = input('Masukkan jenis produk: ').title()
+
+            try:
+                if jenis == '':
+                    raise ValueError('Jenis produk tidak boleh kosong.\n')
+                
+                valid = True
+            
+            except ValueError as e:
+                print(str(e))
+        
+        daftar_produk.tambah(Produk(kode, nama, jumlah, jenis))
 
         print('=' * 80)
         print('Produk baru berhasil ditambahkan.')
 
     elif pilihan == 3:
         pass
-
     else:
         print('\nPilihan tidak valid.')
 
@@ -200,7 +214,7 @@ def cari_produk():
     print('Produk ditemukan!')
     
     produk = daftar_produk.cari(kode)
-    produk.cetak()
+    print(produk.cetak())
 
     if produk.jumlah <= 5:
         print('Stok produk ini sudah mau habis. Jangan lupa untuk menambah stok.')
@@ -253,10 +267,10 @@ def jual_produk():
     print('=' * 80)
     print('Produk berhasil dijual!')
 
-daftar_produk.tambah(Produk('A001', 'Hand Sanitizer', 10))
-daftar_produk.tambah(Produk('A002', 'Ban Mobil', 8))
-daftar_produk.tambah(Produk('A003', 'Buah-Buahan', 5))
-daftar_produk.tambah(Produk('A004', 'Botol Minuman Bayi', 8))
+daftar_produk.tambah(Produk('A001', 'Hand Sanitizer', 10, 'Kesehatan'))
+daftar_produk.tambah(Produk('A002', 'Ban Mobil', 8, 'Otomotif'))
+daftar_produk.tambah(Produk('A003', 'Buah-Buahan', 5, 'Buah'))
+daftar_produk.tambah(Produk('A004', 'Botol Minuman Bayi', 8, 'Kebutuhan'))
 
 while True:
     clear_screen()
