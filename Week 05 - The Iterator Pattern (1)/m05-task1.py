@@ -217,7 +217,7 @@ def absensi_mahasiswa():
 while True:
     clear_screen()
 
-    print(f'{'MENU':^80}')
+    print(f'{'MENU ABSENSI MAHASISWA':^80}')
     print('=' * 80)
     print('1. Tambah Data Mahasiswa')
     print('2. Absensi Mahasiswa')

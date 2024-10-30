@@ -275,7 +275,7 @@ daftar_produk.tambah(Produk('A004', 'Botol Minuman Bayi', 8, 'Kebutuhan'))
 while True:
     clear_screen()
 
-    print(f'{'E-COMMERCE':^80}')
+    print(f'{'DATA PRODUK E-COMMERCE':^80}')
     print('=' * 80)
     print('1. Tambah Produk')
     print('2. Cari Produk')
