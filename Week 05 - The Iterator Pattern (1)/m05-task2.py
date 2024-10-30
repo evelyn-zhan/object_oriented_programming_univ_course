@@ -267,10 +267,10 @@ def jual_produk():
     print('=' * 80)
     print('Produk berhasil dijual!')
 
-daftar_produk.tambah(Produk('A001', 'Hand Sanitizer', 10, 'Kesehatan'))
+daftar_produk.tambah(Produk('A001', 'Hand Sanitizer', 10, 'Kebersihan'))
 daftar_produk.tambah(Produk('A002', 'Ban Mobil', 8, 'Otomotif'))
-daftar_produk.tambah(Produk('A003', 'Buah-Buahan', 5, 'Buah'))
-daftar_produk.tambah(Produk('A004', 'Botol Minuman Bayi', 8, 'Kebutuhan'))
+daftar_produk.tambah(Produk('A003', 'Buah-Buahan', 5, 'Produk Makanan Segar'))
+daftar_produk.tambah(Produk('A004', 'Botol Minuman Bayi', 8, 'Perlengkapan Bayi'))
 
 while True:
     clear_screen()
