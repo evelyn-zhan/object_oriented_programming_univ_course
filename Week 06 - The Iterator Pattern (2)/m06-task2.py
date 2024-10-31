@@ -72,6 +72,7 @@ def cetak_semua():
         print('Daftar produk masih kosong.')
     else:
         daftar_produk_terurut = sorted(daftar_produk.isi, key=lambda x: x.jenis)
+        print('Daftar produk terurut berdasarkan jenis:')
         for produk in daftar_produk_terurut:
             print(produk.cetak())
         print('=' * 80)
