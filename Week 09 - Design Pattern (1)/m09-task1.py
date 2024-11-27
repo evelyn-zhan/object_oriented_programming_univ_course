@@ -276,6 +276,7 @@ def absensi():
     if len(daftar_mahasiswa) == 0:
         print('Belum ada data mahasiswa.')
     else:
+        print(f'Terdapat {len(daftar_mahasiswa)} orang mahasiswa.')
         for mahasiswa in daftar_mahasiswa:
             print(Absensi(mahasiswa))
     
@@ -285,6 +286,7 @@ def absensi():
     if len(daftar_dosen) == 0:
         print('Belum ada data dosen.')
     else:
+        print(f'Terdapat {len(daftar_dosen)} orang dosen.')
         for dosen in daftar_dosen:
             print(Absensi(dosen))
     
