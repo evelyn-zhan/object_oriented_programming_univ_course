@@ -17,4 +17,4 @@ class test_program(unittest.TestCase):
         self.assertEqual(df_dsn.jumlah(), 2)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
